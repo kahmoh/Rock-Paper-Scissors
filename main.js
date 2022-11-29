@@ -1,47 +1,48 @@
-//pick for computer
-//let the player pick
-//return the player choice
-//function to get player and computer choice at once---
-//determine the winner of a given round
-//tell the player who won the given round
-//keep score of round wins
-//first to five wins
-//button to reset game
+const CHOICES = ['rock', 'paper', 'scissors']
+let playerWins = 0;
+let computerWins = 0;
 
-
-const CHOICES = ['rock','paper','scissors'];
-
-function playGame (){
+function playGame() {
+  while (playerWins < 3 && computerWins <3){
     playRound()
+  }
+  if (playerWins == 3) {
+    console.log('game over you win')
+  }else if (computerWins == 3) {
+    console.log('game over you lose')
+  }
 }
 
-function playRound (playerChoice, computerChoice) {
-    playerChoice = getPlayerChoice()
-    computerChoice = getComputerChoice()
-    console.log(`You picked ${playerChoice}`)
-    console.log(`Yoda picked ${computerChoice}`)
-    declareWinner(playerChoice,computerChoice)
+function playRound(playerChoice, computerChoice) {
+  playerChoice = getPlayerChoice();
+  computerChoice = getComputerChoice();
+  declareWinner(playerChoice, computerChoice);
 }
 
 function getPlayerChoice() {
-    let input = prompt('Type Rock, paper or scissors')
-    input = input.toLowerCase()
-    return input
+  let input = prompt('Type Rock, paper or scissors');
+  input = input.toLowerCase();
+  return input;
 }
 
 function getComputerChoice() {
-    return CHOICES [Math.floor(Math.random() * 3 )]
+  return CHOICES[Math.floor(Math.random() * 3)];
 }
 
-function declareWinner (choiceP, choiceC) {
-    if (choiceC == choiceP){
-        console.log('Tie')
-    }else if (choiceP == 'rock' && choiceC == 'scissors' || choiceP == 'paper' && choiceC == 'rock' || choiceP == 'scissors' && choiceC == 'paper'){
-        console.log('You win')
-    }else {
-        console.log('You lose')
-    }
+function declareWinner(choiceP, choiceC) {
+  if (choiceC == choiceP) {
+    console.log('Tie');
+  } else if (
+    (choiceP == 'rock' && choiceC == 'scissors') ||
+    (choiceP == 'paper' && choiceC == 'rock') ||
+    (choiceP == 'scissors' && choiceC == 'paper')
+  ) {
+    console.log ('playerWin')
+    playerWins ++
+  } else {
+    console.log ('computerWin')
+    computerWins ++
+  }
 }
 
 playGame()
-
