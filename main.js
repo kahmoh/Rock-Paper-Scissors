@@ -1,4 +1,5 @@
 const CHOICES = ['rock', 'paper', 'scissors']
+const winners = []
 let playerWins = 0;
 let computerWins = 0;
 
@@ -13,14 +14,19 @@ function playGame() {
   }
 }
 
-function playRound(playerChoice, computerChoice) {
-  playerChoice = getPlayerChoice();
-  computerChoice = getComputerChoice();
+function playRound() {
+  const playerChoice = getPlayerChoice();
+  const computerChoice = getComputerChoice();
   declareWinner(playerChoice, computerChoice);
+  const winner = winners[winners.length-1]
+  logRound(playerChoice, computerChoice, winner)
 }
 
 function getPlayerChoice() {
   let input = prompt('Type Rock, paper or scissors');
+  while (input === null){
+    input = prompt('Type Rock, Paper or scissors')
+  }
   input = input.toLowerCase();
   return input;
 }
@@ -31,17 +37,29 @@ function getComputerChoice() {
 
 function declareWinner(choiceP, choiceC) {
   if (choiceC == choiceP) {
-    console.log('Tie');
+    winners.push('Tie');
   } else if (
-    (choiceP == 'rock' && choiceC == 'scissors') ||
-    (choiceP == 'paper' && choiceC == 'rock') ||
-    (choiceP == 'scissors' && choiceC == 'paper')
+      (choiceP == 'rock' && choiceC == 'scissors') ||
+      (choiceP == 'paper' && choiceC == 'rock') ||
+      (choiceP == 'scissors' && choiceC == 'paper')
   ) {
-    console.log ('playerWin')
+    winners.push('You')
     playerWins ++
-  } else {
-    console.log ('computerWin')
+  } else if ((choiceC == 'rock' && choiceP == 'scissors') ||
+      (choiceC == 'paper' && choiceP == 'rock') ||
+      (choiceC == 'scissors' && choiceP == 'paper')){
+    winners.push('Computer')
     computerWins ++
+  }
+}
+
+function logRound (playerChoice, computerChoice, winner) {
+  console.log('You chose:', playerChoice);
+  console.log('Computer chose:', computerChoice)
+  if (winner !== 'Tie'){
+    console.log(winner, 'won that round')
+  }else {
+    console.log('That was a tie')
   }
 }
 
