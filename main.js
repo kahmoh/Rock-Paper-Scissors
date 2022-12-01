@@ -2,15 +2,16 @@ const CHOICES = ['rock', 'paper', 'scissors']
 const winners = []
 let playerWins = 0;
 let computerWins = 0;
+let roundCount = 0;
 
 function playGame() {
   while (playerWins < 3 && computerWins <3){
     playRound()
   }
   if (playerWins == 3) {
-    console.log('game over you win')
+    console.log('GAME OVER! You win :)')
   }else if (computerWins == 3) {
-    console.log('game over you lose')
+    console.log('GAME OVER! You lose :(')
   }
 }
 
@@ -38,29 +39,38 @@ function getComputerChoice() {
 function declareWinner(choiceP, choiceC) {
   if (choiceC == choiceP) {
     winners.push('Tie');
+    roundCount ++
   } else if (
       (choiceP == 'rock' && choiceC == 'scissors') ||
       (choiceP == 'paper' && choiceC == 'rock') ||
       (choiceP == 'scissors' && choiceC == 'paper')
   ) {
     winners.push('You')
+    roundCount ++
     playerWins ++
-  } else if ((choiceC == 'rock' && choiceP == 'scissors') ||
+  } else if (
+      (choiceC == 'rock' && choiceP == 'scissors') ||
       (choiceC == 'paper' && choiceP == 'rock') ||
-      (choiceC == 'scissors' && choiceP == 'paper')){
+      (choiceC == 'scissors' && choiceP == 'paper')
+  ) {
     winners.push('Computer')
+    roundCount ++
     computerWins ++
   }
 }
 
 function logRound (playerChoice, computerChoice, winner) {
-  console.log('You chose:', playerChoice);
-  console.log('Computer chose:', computerChoice)
+  const playerChoiceCaps = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+  const computerChoiceCaps = computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+  console.log('Round:', roundCount);
+  console.log('You chose:', playerChoiceCaps);
+  console.log('Computer chose:', computerChoiceCaps);
   if (winner !== 'Tie'){
     console.log(winner, 'won that round')
   }else {
     console.log('That was a tie')
   }
+  console.log('=================================')
 }
 
 playGame()
