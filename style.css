@@ -1,0 +1,28 @@
+* {
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.buttons {
+    height: 100vh;
+    width: 100vw;
+    font-size: 40px;
+    margin: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rock {
+    margin-bottom: 15px;
+}
+
+.paper {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.scissors {
+    margin-top: 15px;
+}
+

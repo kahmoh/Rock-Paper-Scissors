@@ -1,9 +1,9 @@
-const BUTTONS = document.querySelectorAll('button')
+const BUTTONS = document.querySelectorAll('h1')
 
 const CHOICES = ['rock', 'paper', 'scissors'];
 
 function getPlayerChoice (btn) {
-  return(btn.textContent);
+  return(btn.textContent.toLowerCase());
 }
 
 for (let button of BUTTONS) {
@@ -13,7 +13,6 @@ for (let button of BUTTONS) {
     console.log(`Player chose ${playerChoice}`)
     console.log(`Computer chose ${computerChoice}`)
     declareWinner(playerChoice,computerChoice)
-
   })
 }
 
