@@ -22,7 +22,7 @@ function showLossScreen() {
   endScreenText.textContent = 'YOU LOSE'
   ENDSCREEN.appendChild(endScreenText)
   ENDSCREEN.classList.add('loss')
-  setTimeout(restartGame,1000)
+  setTimeout(restartGame,2000)
 }
 
 function showWinScreen() {
